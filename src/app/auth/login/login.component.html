@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="OnSubmit(form)">
+<!-- <form #form="ngForm" (ngSubmit)="OnSubmit(form)">
   <h2>Login</h2>
 
   <div class="control-row">
@@ -33,5 +33,30 @@
   <p>Invalid Email dectected. Please Check your Email.</p>
   } @if(password.touched && password.dirty && password.invalid){
   <p>Invalid Password dectected. Please Check your Password.</p>
+  }
+</form> -->
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <input id="email" type="email" [formControl] = "form.controls.email"/>
+    </div>
+
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName = "password" />
+    </div>
+
+    <button class="button">Login</button>
+  </div>
+  @if(InValidEmail){
+    <p class="control-error">The Email is Invalid</p>
+  }
+  @if(InValidPassword){
+    <p class="control-error">The Password  should be 6 charaterLong and have an Question Mark</p>
   }
 </form>
